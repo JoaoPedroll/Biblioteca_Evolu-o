@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Cliente {
     private String nome;
     private static String cpf;
-    private int idade;
+    private int idade;  
     private String rua;
     private String cidade;
 

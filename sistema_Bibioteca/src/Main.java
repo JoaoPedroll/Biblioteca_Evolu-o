@@ -5,8 +5,14 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<Livro> livrosBiblioteca = new ArrayList<>();
         ArrayList<Cliente> clientesBilioteca = new ArrayList<>();
+        ArrayList<Funcionario> funcionariosBilioteca = new ArrayList<>();
 
         System.out.println("---------------------------------Sistema de Biblioteca---------------------------------");
+
+        Funcionario.criarFuncionario("Caio Victor", "1234567","11/06/1990", funcionariosBilioteca);
+        Funcionario.atualizarFuncionario("Caio do Rolimã", "1234567", "11/06/1991", funcionariosBilioteca);
+        //Funcionario.deletarFuncionario("1234567", funcionariosBilioteca);
+        Funcionario.listarFuncionario(funcionariosBilioteca);
 
         // criar clientes biblioteca
         Cliente.criarCliente("João Filho","1456321",18,"Rua dos Alfeneiros","São José da Lagoa Tapada", clientesBilioteca);
@@ -31,6 +37,7 @@ public class Main {
       //  Livro.deletarLivro("livro 2", livrosBiblioteca);
         // listar todos os livros
        Livro.listarLivros(livrosBiblioteca);
+
 
 
     }
