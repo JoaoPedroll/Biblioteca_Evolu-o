@@ -37,8 +37,18 @@ public class Main {
       //  Livro.deletarLivro("livro 2", livrosBiblioteca);
         // listar todos os livros
        Livro.listarLivros(livrosBiblioteca);
-
-
+        
+        
+        //criar emprestimo
+        Emprestimo.criarEmprestimo("Livro 1", "02/03/2023", "03/03/2023", emprestimoBiblioteca);
+        Emprestimo.criarEmprestimo("Livro 2", "01/02/2023", "05/02/2023", emprestimoBiblioteca);
+        Emprestimo.criarEmprestimo("Livro 3", "25/01/2023", "30/01/2023", emprestimoBiblioteca);
+        // atualizar emprestimo
+        // Emprestimo.criarEmprestimo("Livro 1", "02/04/2023", "03/04/2023");
+        // deletar emprestimo
+        // Emprestimo.criarEmprestimo("Livro 1", "02/03/2023", "03/03/2023");
+        // Listar todos os emprestimos
+        Emprestimo.listarEmprestimos(emprestimoBiblioteca);
 
     }
 }
