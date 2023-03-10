@@ -1,11 +1,12 @@
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class Main {
     public static void main(String[] args) {
         ArrayList<Livro> livrosBiblioteca = new ArrayList<>();
         ArrayList<Cliente> clientesBilioteca = new ArrayList<>();
         ArrayList<Funcionario> funcionariosBilioteca = new ArrayList<>();
+        ArrayList<Emprestimo> emprestimoBiblioteca = new ArrayList<>();
 
         System.out.println("---------------------------------Sistema de Biblioteca---------------------------------");
 
@@ -37,18 +38,23 @@ public class Main {
       //  Livro.deletarLivro("livro 2", livrosBiblioteca);
         // listar todos os livros
        Livro.listarLivros(livrosBiblioteca);
-        
-        
+
+
         //criar emprestimo
-        Emprestimo.criarEmprestimo("Livro 1", "02/03/2023", "03/03/2023", emprestimoBiblioteca);
-        Emprestimo.criarEmprestimo("Livro 2", "01/02/2023", "05/02/2023", emprestimoBiblioteca);
-        Emprestimo.criarEmprestimo("Livro 3", "25/01/2023", "30/01/2023", emprestimoBiblioteca);
+        Emprestimo.criarEmprestimo("Livro 1","João", "02/03/2023", "03/03/2023", emprestimoBiblioteca);
+        Emprestimo.criarEmprestimo("Livro 2","Ygor", "01/02/2023", "05/02/2023", emprestimoBiblioteca);
+        Emprestimo.criarEmprestimo("Livro 3","Caio", "25/01/2023", "30/01/2023", emprestimoBiblioteca);
+
+        Emprestimo.listarEmprestimo(emprestimoBiblioteca);
+
+        System.out.println("------");
+
         // atualizar emprestimo
-        // Emprestimo.criarEmprestimo("Livro 1", "02/04/2023", "03/04/2023");
+        Emprestimo.atualizarEmprestimo("Livro 1","livro 0","Pedro" ,"01/04/2023", "05/04/2023",emprestimoBiblioteca);
         // deletar emprestimo
-        // Emprestimo.criarEmprestimo("Livro 1", "02/03/2023", "03/03/2023");
+        Emprestimo.deletarEmprestimo("Livro 2", emprestimoBiblioteca);
         // Listar todos os emprestimos
-        Emprestimo.listarEmprestimos(emprestimoBiblioteca);
+        Emprestimo.listarEmprestimo(emprestimoBiblioteca);
 
     }
 }
