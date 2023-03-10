@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Emprestimo {
     private String livro;
     private String data_emprestimo;
@@ -40,5 +42,34 @@ public class Emprestimo {
                 ", data_emprestimo='" + data_emprestimo + '\'' +
                 ", data_devolucao='" + data_devolucao + '\'' +
                 '}';
+    }
+
+    public static void criarEmprestimo(String nome_cliente, int data_emprestimo, int data_devolucao, ArrayList<Emprestimo> emprestimos){
+        Emprestimo emprestimo = new Emprestimo(nome_cliente, data_emprestimo, data_devolucao);
+        emprestimos.add(novoEmprestimo);
+    }
+    public static void atualizarEmprestimo(String nome_cliente, int data_emprestimo, int data_devolucao, ArrayList<Emprestimo> emprestimos){
+        for (Emprestimo emprestimo : emprestimos){
+            if(emprestimo.getLivro() == livro){
+                emprestimo.setLivro(novoLivro);
+                emprestimo.setData_emprestimo(novoEmprestimo);
+                emprestimo.setData_devolucao(novoDevolucao);
+                break;
+            }
+        }
+    }
+    public static void deletarEmprestimo(String nome_cliente, int data_emprestimo, int data_devolucao, ArrayList<Emprestimo> emprestimos){
+        for (Emprestimo emprestimo : emprestimos){
+            if(emprestimo.getData_emprestimo() == Emprestimo){
+                emprestimo.remove(emprestimo);
+                break;
+            }
+        }
+    }
+
+    public static void listarEmprestimo(ArrayList<Emprestimo> emprestimos){
+        for (Emprestimo emprestimo : emprestimos){
+            System.out.println("Emprestimo: " + emprestimo.getLivro() + ", Data de Emprestimo: " + emprestimo.getData_emprestimo() + ", Data de Devolução: " + emprestimo.getData_devolucao());
+        }
     }
 }
