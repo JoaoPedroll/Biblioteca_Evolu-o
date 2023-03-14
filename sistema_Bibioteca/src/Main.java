@@ -3,6 +3,9 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
+
+
+        /*
         ArrayList<Livro> livrosBiblioteca = new ArrayList<>();
         ArrayList<Cliente> clientesBilioteca = new ArrayList<>();
         ArrayList<Funcionario> funcionariosBilioteca = new ArrayList<>();
@@ -55,6 +58,6 @@ public class Main {
         Emprestimo.deletarEmprestimo("Livro 2", emprestimoBiblioteca);
         // Listar todos os emprestimos
         Emprestimo.listarEmprestimo(emprestimoBiblioteca);
-
+        */
     }
 }
