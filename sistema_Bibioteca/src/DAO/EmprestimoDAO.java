@@ -3,16 +3,21 @@ package DAO;
 import Models.Emprestimo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class EmprestimoDAO {
 
-    public static void criarEmprestimo(String livro, String cliente, String data_emprestimo,
-                                       String data_devolucao, ArrayList<Emprestimo> emprestimos){
-        Emprestimo emprestimo = new Emprestimo(livro,cliente,data_emprestimo,data_devolucao);
+    public EmprestimoDAO() {
+
+    }
+
+    static List<Models.Emprestimo> emprestimos = new ArrayList<>();
+
+    public static void criarEmprestimo(Emprestimo emprestimo){
         emprestimos.add(emprestimo);
     }
     public static void atualizarEmprestimo(String livro,String novoLivro,String novoCliente
-            , String novaDataEmprestimo, String novaDataDevolucao, ArrayList<Emprestimo> emprestimos){
+            , String novaDataEmprestimo, String novaDataDevolucao){
         for (Emprestimo emprestimo : emprestimos){
             if(emprestimo.getLivro() == livro){
                 emprestimo.setLivro(novoLivro);
@@ -23,7 +28,7 @@ public class EmprestimoDAO {
             }
         }
     }
-    public static void deletarEmprestimo(String nomeLivro, ArrayList<Emprestimo> emprestimos){
+    public static void deletarEmprestimo(String nomeLivro, Emprestimo emprestimo){
         for (Emprestimo emp : emprestimos){
             if(emp.getLivro() == nomeLivro){
                 emprestimos.remove(emp);
@@ -34,7 +39,12 @@ public class EmprestimoDAO {
 
     public static void listarEmprestimo(ArrayList<Emprestimo> emprestimos){
         for (Emprestimo emprestimo : emprestimos){
-            System.out.println("Emprestimo{ "+ "Livro: " + emprestimo.getLivro() +"Cliente: "+ emprestimo.getCliente() +", Data de Emprestimo: " + emprestimo.getData_emprestimo() + ", Data de Devolução: " + emprestimo.getData_devolucao());
+            System.out.println("Emprestimo{ "+ "Livro: " +
+                    emprestimo.getLivro() +"Cliente: "+
+                    emprestimo.getCliente() +
+                    ", Data de Emprestimo: "
+                    + emprestimo.getData_emprestimo() +
+                    ", Data de Devolução: " + emprestimo.getData_devolucao());
         }
     }
 }
