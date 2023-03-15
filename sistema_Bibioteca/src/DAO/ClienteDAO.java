@@ -3,14 +3,21 @@ package DAO;
 import Models.Cliente;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ClienteDAO {
-    public static void criarCliente(String nome, String cpf, int idade, String rua, String cidade, ArrayList<Cliente> clientes) {
-        Cliente novoCliente = new Cliente(nome, cpf, idade, rua, cidade);
-        clientes.add(novoCliente);
+
+    public ClienteDAO() {
+
     }
 
-    public static void atualizarCliente(String nome, String novoNome ,int novaIdade, String novaRua, String novaCidade, ArrayList<Cliente> clientes) {
+    static List<Models.Cliente> clientes = new ArrayList<>();
+
+    public static void criarCliente(Cliente cliente) {
+        clientes.add(cliente);
+    }
+
+    public static void atualizarCliente(String nome, String novoNome ,int novaIdade, String novaRua, String novaCidade) {
         for (Cliente cliente : clientes) {
             if (cliente.getNome() == nome) {
                 cliente.setNome(novoNome);
@@ -21,8 +28,8 @@ public class ClienteDAO {
             }
         }
     }
-    public static void deletarCliente(String nome, ArrayList<Cliente> clientes) {
-        for (Cliente cliente : clientes) {
+    public static void deletarCliente(String nome, Cliente cliente) {
+        for (Cliente cli : clientes) {
             if (cliente.getNome() == nome) {
                 clientes.remove(cliente);
                 break;
@@ -33,7 +40,10 @@ public class ClienteDAO {
 
     public static void listarClientes(ArrayList<Cliente> clientes) {
         for (Cliente cliente : clientes) {
-            System.out.println("Cpf: " + cliente.getCpf() + ", Nome: " + cliente.getNome() + ", Idade: " + cliente.getIdade() + ", Rua: " + cliente.getRua() + ", Cidade: " + cliente.getCidade());
+            System.out.println("Cpf: " + cliente.getCpf() +
+                    ", Nome: " + cliente.getNome() +
+                    ", Idade: " + cliente.getIdade() +
+                    ", Rua: " + cliente.getRua() + ", Cidade: " + cliente.getCidade());
         }
     }
 }
