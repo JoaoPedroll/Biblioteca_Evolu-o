@@ -1,6 +1,6 @@
 package DAO;
 
-import Models.Emprestimo;
+import Model.Emprestimo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,12 +11,12 @@ public class EmprestimoDAO {
 
     }
 
-    static List<Models.Emprestimo> emprestimos = new ArrayList<>();
+    List<Emprestimo> emprestimos = new ArrayList<>();
 
-    public static void criarEmprestimo(Emprestimo emprestimo){
+    public void criarEmprestimo(Emprestimo emprestimo){
         emprestimos.add(emprestimo);
     }
-    public static void atualizarEmprestimo(String livro,String novoLivro,String novoCliente
+    public void atualizarEmprestimo(String livro,String novoLivro,String novoCliente
             , String novaDataEmprestimo, String novaDataDevolucao){
         for (Emprestimo emprestimo : emprestimos){
             if(emprestimo.getLivro() == livro){
@@ -28,7 +28,7 @@ public class EmprestimoDAO {
             }
         }
     }
-    public static void deletarEmprestimo(String nomeLivro, Emprestimo emprestimo){
+    public void deletarEmprestimo(String nomeLivro){
         for (Emprestimo emp : emprestimos){
             if(emp.getLivro() == nomeLivro){
                 emprestimos.remove(emp);
@@ -37,7 +37,7 @@ public class EmprestimoDAO {
         }
     }
 
-    public static void listarEmprestimo(ArrayList<Emprestimo> emprestimos){
+    public List<Emprestimo> listarEmprestimo(){
         for (Emprestimo emprestimo : emprestimos){
             System.out.println("Emprestimo{ "+ "Livro: " +
                     emprestimo.getLivro() +"Cliente: "+
@@ -46,5 +46,6 @@ public class EmprestimoDAO {
                     + emprestimo.getData_emprestimo() +
                     ", Data de Devolução: " + emprestimo.getData_devolucao());
         }
+        return emprestimos;
     }
 }

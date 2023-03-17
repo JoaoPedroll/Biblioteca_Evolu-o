@@ -1,63 +1,85 @@
+import DAO.ClienteDAO;
+import DAO.EmprestimoDAO;
+import DAO.FuncionarioDAO;
+import DAO.LivroDAO;
+import Model.Cliente;
+import Model.Emprestimo;
+import Model.Funcionario;
+import Model.Livro;
+
 import java.util.ArrayList;
 
 
 public class Main {
     public static void main(String[] args) {
 
+        ArrayList<ClienteDAO> clienteDAOS = new ArrayList<>();
+        ArrayList<LivroDAO> livroDAOS = new ArrayList<>();
+        ArrayList<EmprestimoDAO> emprestimoDAOS = new ArrayList<>();
+        ArrayList<FuncionarioDAO> funcionarioDAOS = new ArrayList<>();
 
-        /*
-        ArrayList<Livro> livrosBiblioteca = new ArrayList<>();
-        ArrayList<Cliente> clientesBilioteca = new ArrayList<>();
-        ArrayList<Funcionario> funcionariosBilioteca = new ArrayList<>();
-        ArrayList<Emprestimo> emprestimoBiblioteca = new ArrayList<>();
+        System.out.println("-----------Sistema de Biblioteca------------------------");
 
-        System.out.println("---------------------------------Sistema de Biblioteca---------------------------------");
+        Livro livro = new Livro("Hoobit","Tolkien",150);
+        Livro livro2 = new Livro("Romeu e Julieta","Shakespiere",200);
 
-        Funcionario.criarFuncionario("Caio Victor", "1234567","11/06/1990", funcionariosBilioteca);
-        Funcionario.atualizarFuncionario("Caio do Rolimã", "1234567", "11/06/1991", funcionariosBilioteca);
-        //Funcionario.deletarFuncionario("1234567", funcionariosBilioteca);
-        Funcionario.listarFuncionario(funcionariosBilioteca);
-
-        // criar clientes biblioteca
-        Cliente.criarCliente("João Filho","1456321",18,"Rua dos Alfeneiros","São José da Lagoa Tapada", clientesBilioteca);
-        Cliente.criarCliente("Marcos Paulo","558145",21,"Rua Marcos Valadares","São José do Rio Preto", clientesBilioteca);
-        Cliente.criarCliente("Elias Monkbiel","478963",35,"Rua José de Sa","São Paulo", clientesBilioteca);
-       Cliente.criarCliente("Manoel Gomes","234569",50,"Rua Duda Xerques","Rio de Janeiro", clientesBilioteca);
-        //atualizar cliente
-       //Cliente.atualizarCliente("João Filho","Ze de Nina",20,"Rua Geraldo de Sá","Lagoa Bom Jesus", clientesBilioteca);
-        //deletar cliente
-        Cliente.deletarCliente("Elias Monkbiel", clientesBilioteca);
-        //listar Clientes
-       Cliente.listarClientes(clientesBilioteca);
+        LivroDAO livroDAO = new LivroDAO();
+        livroDAO.criarLivro(livro);
+        livroDAO.criarLivro(livro2);
+        livroDAO.atualizarLivro("Hoobit","A culpa e das estrelas"
+                ,"jacobson",120);
+        livroDAO.listarLivros();
 
 
-        // criar livro
-        Livro.criarLivro("livro 1", "Douglas Adams", 193, livrosBiblioteca);
-       Livro.criarLivro("livro 2", "Douglas Adams", 193, livrosBiblioteca);
-      Livro.criarLivro("livro 3", "Douglas Adams", 193, livrosBiblioteca);
-        // atualizar livro
-      //  Livro.atualizarLivro("livro 1","O Restaurante no Fim do Universo", "Ygor", 45, livrosBiblioteca);
-        // deletar livro
-      //  Livro.deletarLivro("livro 2", livrosBiblioteca);
-        // listar todos os livros
-       Livro.listarLivros(livrosBiblioteca);
+        System.out.println("-------------------------------------------------------");
+
+        Cliente cliente = new Cliente("Maicon","1478632",18,"rua dos alfeneiros",
+                "sao joao");
+        Cliente cliente2 = new Cliente("SIbila","56458456",20,"rua dos comercios",
+                "sao paulo");
+        Cliente cliente3 = new Cliente("Marcola","545661561",18,"rua dos fazendeiros",
+                "Rio de Janeiro");
 
 
-        //criar emprestimo
-        Emprestimo.criarEmprestimo("Livro 1","João", "02/03/2023", "03/03/2023", emprestimoBiblioteca);
-        Emprestimo.criarEmprestimo("Livro 2","Ygor", "01/02/2023", "05/02/2023", emprestimoBiblioteca);
-        Emprestimo.criarEmprestimo("Livro 3","Caio", "25/01/2023", "30/01/2023", emprestimoBiblioteca);
+        ClienteDAO clienteDAO = new ClienteDAO();
+        clienteDAO.criarCliente(cliente);
+        clienteDAO.criarCliente(cliente2);
+        clienteDAO.criarCliente(cliente3);
+        clienteDAO.atualizarCliente("Maicon","SHIRLEY",36,"rua baltimore",
+               "Sao paulo");
+        clienteDAO.deletarCliente("SHIRLEY");
+        clienteDAO.listarClientes();
 
-        Emprestimo.listarEmprestimo(emprestimoBiblioteca);
+        System.out.println("-------------------------------------------------------");
 
-        System.out.println("------");
+        Emprestimo emprestimo = new Emprestimo("Romeu e Julieta","SIbila","17-03-2023","12-05-2023");
+        Emprestimo emprestimo2 = new Emprestimo("A culpa e das estrelas","SHIRLEY","17-03-2023","10-04-2023");
 
-        // atualizar emprestimo
-        Emprestimo.atualizarEmprestimo("Livro 1","livro 0","Pedro" ,"01/04/2023", "05/04/2023",emprestimoBiblioteca);
-        // deletar emprestimo
-        Emprestimo.deletarEmprestimo("Livro 2", emprestimoBiblioteca);
-        // Listar todos os emprestimos
-        Emprestimo.listarEmprestimo(emprestimoBiblioteca);
-        */
+
+        EmprestimoDAO emprestimoDAO = new EmprestimoDAO();
+        emprestimoDAO.criarEmprestimo(emprestimo);
+        emprestimoDAO.criarEmprestimo(emprestimo2);
+        emprestimoDAO.atualizarEmprestimo();
+        emprestimoDAO.deletarEmprestimo();
+        emprestimoDAO.listarEmprestimo();
+
+        System.out.println("-------------------------------------------------------");
+
+        Funcionario funcionario = new Funcionario("Joao","45614561158","10-02-2023");
+        Funcionario funcionario2 = new Funcionario("Gerlandia","15611556456","10-01-2023");
+
+
+        FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
+        funcionarioDAO.criarFuncionario(funcionario);
+        funcionarioDAO.criarFuncionario(funcionario2);
+        funcionarioDAO.atualizarFuncionario("45614561158","Marcos","09-02-2023");
+        funcionarioDAO.deletarFuncionario("Gerlandia");
+        funcionarioDAO.listarFuncionario();
+
+        System.out.println("-------------------------------------------------------");
+
+
+
+
     }
 }

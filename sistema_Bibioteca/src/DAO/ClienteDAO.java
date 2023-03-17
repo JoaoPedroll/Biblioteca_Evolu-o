@@ -1,23 +1,22 @@
 package DAO;
 
-import Models.Cliente;
+import Model.Cliente;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ClienteDAO {
 
-    public ClienteDAO() {
 
-    }
+    List<Cliente> clientes = new ArrayList<>();
 
-    static List<Models.Cliente> clientes = new ArrayList<>();
 
-    public static void criarCliente(Cliente cliente) {
+    public void criarCliente(Cliente cliente) {
         clientes.add(cliente);
     }
 
-    public static void atualizarCliente(String nome, String novoNome ,int novaIdade, String novaRua, String novaCidade) {
+    public void atualizarCliente(String nome, String novoNome ,
+                                  int novaIdade, String novaRua, String novaCidade) {
         for (Cliente cliente : clientes) {
             if (cliente.getNome() == nome) {
                 cliente.setNome(novoNome);
@@ -28,22 +27,23 @@ public class ClienteDAO {
             }
         }
     }
-    public static void deletarCliente(String nome, Cliente cliente) {
+    public void deletarCliente(String nome) {
         for (Cliente cli : clientes) {
-            if (cliente.getNome() == nome) {
-                clientes.remove(cliente);
+            if (cli.getNome() == nome) {
+                clientes.remove(cli);
                 break;
             }
         }
     }
 
 
-    public static void listarClientes(ArrayList<Cliente> clientes) {
-        for (Cliente cliente : clientes) {
-            System.out.println("Cpf: " + cliente.getCpf() +
-                    ", Nome: " + cliente.getNome() +
-                    ", Idade: " + cliente.getIdade() +
-                    ", Rua: " + cliente.getRua() + ", Cidade: " + cliente.getCidade());
+    public List<Cliente> listarClientes() {
+        for (Cliente cli : clientes) {
+            System.out.println("Cpf: " + cli.getCpf() +
+                    ", Nome: " + cli.getNome() +
+                    ", Idade: " + cli.getIdade() +
+                    ", Rua: " + cli.getRua() + ", Cidade: " + cli.getCidade());
         }
+        return clientes;
     }
 }

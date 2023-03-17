@@ -1,6 +1,6 @@
 package DAO;
 
-import Models.Funcionario;
+import Model.Funcionario;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,13 +11,13 @@ public class FuncionarioDAO {
 
     }
 
-    static List<Models.Funcionario> funcionarios = new ArrayList<>();
+    static List<Funcionario> funcionarios = new ArrayList<>();
 
-    public static void criarFuncionario(Funcionario funcionario) {
+    public  void criarFuncionario(Funcionario funcionario) {
         funcionarios.add(funcionario);
     }
 
-    public static void atualizarFuncionario(String cpf, String novoNome, String nova_Data_Contratacao) {
+    public  void atualizarFuncionario(String cpf, String novoNome, String nova_Data_Contratacao) {
         for (Funcionario funcionario : funcionarios) {
             if (funcionario.getCpf() == cpf) {
                 funcionario.setNome(novoNome);
@@ -26,21 +26,22 @@ public class FuncionarioDAO {
             }
         }
     }
-    public static void deletarFuncionario(String cpf, Funcionario funcionario) {
+    public  void deletarFuncionario(String cpf) {
         for (Funcionario func : funcionarios) {
-            if (funcionario.getCpf() == cpf) {
-                funcionarios.remove(funcionario);
+            if (func.getCpf() == cpf) {
+                funcionarios.remove(func);
                 break;
             }
         }
     }
 
 
-    public static void listarFuncionario(ArrayList<Funcionario> funcionarios) {
+    public List<Funcionario> listarFuncionario() {
         for (Funcionario funcionario : funcionarios) {
             System.out.println("CPF: " + funcionario.getCpf() +
                     ", Nome: " + funcionario.getNome() +
                     ", Data de Contratação: " + funcionario.getData_contratacao());
         }
+        return funcionarios;
     }
 }
