@@ -10,20 +10,37 @@ public class Main {
         ArrayList<Funcionario> funcionariosBilioteca = new ArrayList<>();
         ArrayList<Emprestimo> emprestimoBiblioteca = new ArrayList<>();
 
+        String[] nomes = {"Livro", "Cliente", "Funcionario", "Emprestimo"};
+
         Scanner entradaOpcao = new Scanner(System.in);
-        System.out.println("---------------------------------Sistema de Biblioteca---------------------------------");
+        System.out.println("---------Sistema de Biblioteca---------");
         while(true){
             try{
-                System.out.print("\nOpções: " +
-                        "\n1- Livro\n2- Cliente\n3- Funcionario\n4- Emprestimo\n0- Sair da operação" +
-                        "\n\nDigite um valor: ");
+                System.out.print("""
+
+                        Opções:\s
+                        1- Livro
+                        2- Cliente
+                        3- Funcionario
+                        4- Emprestimo
+                        0- Sair da operação
+
+                        Digite um valor:\s""");
                 int opcaoExecuta = entradaOpcao.nextInt();
                 if(opcaoExecuta == 0){
                     break;
                 }else if(opcaoExecuta >= 1 && opcaoExecuta <= 4){
-                    System.out.print("\nOpções de CRUD de Livro: " +
-                            "\n1- Criar\n2- Listar\n3- Atualizar\n4- Deletar\n0- Sair da operação" +
-                            "\n\nDigite um valor: ");
+                    String n = nomes[opcaoExecuta - 1];
+                    System.out.printf("""
+
+                            Opções de CRUD para %s:\s
+                            1- Criar %s
+                            2- Listar %s
+                            3- Atualizar %s
+                            4- Deletar %s
+                            0- Sair da operação
+
+                            Digite um valor:\s""", n, n, n, n, n);
 
                     int opcaoCRUD = entradaOpcao.nextInt();
                     if(opcaoCRUD == 0){
@@ -106,7 +123,7 @@ public class Main {
                                 String cpf = entradaVariaveis.nextLine();
                                 Funcionario.deletarFuncionario(cpf, funcionariosBilioteca);
                             }
-                        }else if (opcaoExecuta == 4){
+                        }else {
                             if(opcaoCRUD == 1 || opcaoCRUD == 3){
                                 System.out.print("Digite o Titulo do Livro: ");
                                 String titulo = entradaVariaveis.nextLine();
