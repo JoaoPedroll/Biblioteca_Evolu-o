@@ -4,6 +4,7 @@ import Model.Cliente;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ClienteDAO {
 
@@ -17,19 +18,25 @@ public class ClienteDAO {
 
     public void atualizarCliente(String nome, String novoNome ,
                                   int novaIdade, String novaRua, String novaCidade) {
+        boolean encontrado = false;
         for (Cliente cliente : clientes) {
-            if (cliente.getNome() == nome) {
+            if (Objects.equals(cliente.getNome(), nome)) {
                 cliente.setNome(novoNome);
                 cliente.setIdade(novaIdade);
                 cliente.setRua(novaRua);
                 cliente.setCidade(novaCidade);
+                System.out.println("Atualização Concluida!");
+                encontrado = true;
                 break;
             }
+        }
+        if(!encontrado){
+            System.out.println("Atualização NÃO Conlcuida!!");
         }
     }
     public void deletarCliente(String nome) {
         for (Cliente cli : clientes) {
-            if (cli.getNome() == nome) {
+            if (Objects.equals(cli.getNome(), nome)) {
                 clientes.remove(cli);
                 break;
             }

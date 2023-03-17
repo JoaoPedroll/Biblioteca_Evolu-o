@@ -4,6 +4,7 @@ import Model.Livro;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class LivroDAO {
@@ -19,18 +20,24 @@ public class LivroDAO {
     }
 
     public void atualizarLivro(String titulo ,String novoTitulo, String novoAutor, int novoNum_Paginas) {
+        boolean encontrado = false;
         for (Livro livro : livros) {
-            if (livro.getTitulo() == titulo) {
+            if (Objects.equals(livro.getTitulo(), titulo)) {
                 livro.setTitulo(novoTitulo);
                 livro.setAutor(novoAutor);
                 livro.setNumero_pagina(novoNum_Paginas);
+                System.out.println("Atualização Concluida!");
+                encontrado = true;
                 break;
             }
+        }
+        if(!encontrado){
+            System.out.println("Atualização NÃO Conlcuida!!");
         }
     }
     public void deletarLivro(String titulo) {
         for (Livro liv : livros) {
-            if (liv.getTitulo() == titulo) {
+            if (Objects.equals(liv.getTitulo(), titulo)) {
                 livros.remove(liv);
                 break;
             }

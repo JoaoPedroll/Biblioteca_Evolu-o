@@ -4,6 +4,7 @@ import Model.Emprestimo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class EmprestimoDAO {
 
@@ -18,19 +19,25 @@ public class EmprestimoDAO {
     }
     public void atualizarEmprestimo(String livro,String novoLivro,String novoCliente
             , String novaDataEmprestimo, String novaDataDevolucao){
+        boolean encontrado = false;
         for (Emprestimo emprestimo : emprestimos){
-            if(emprestimo.getLivro() == livro){
+            if(Objects.equals(emprestimo.getLivro(), livro)){
                 emprestimo.setLivro(novoLivro);
                 emprestimo.setCliente(novoCliente);
                 emprestimo.setData_emprestimo(novaDataEmprestimo);
                 emprestimo.setData_devolucao(novaDataDevolucao);
+                System.out.println("Atualização Concluida!");
+                encontrado = true;
                 break;
             }
+        }
+        if(!encontrado){
+            System.out.println("Atualização NÃO Conlcuida!!");
         }
     }
     public void deletarEmprestimo(String nomeLivro){
         for (Emprestimo emp : emprestimos){
-            if(emp.getLivro() == nomeLivro){
+            if(Objects.equals(emp.getLivro(), nomeLivro)){
                 emprestimos.remove(emp);
                 break;
             }

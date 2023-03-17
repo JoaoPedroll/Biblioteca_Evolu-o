@@ -4,6 +4,7 @@ import Model.Funcionario;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class FuncionarioDAO {
 
@@ -18,17 +19,23 @@ public class FuncionarioDAO {
     }
 
     public  void atualizarFuncionario(String cpf, String novoNome, String nova_Data_Contratacao) {
+        boolean encontrado = false;
         for (Funcionario funcionario : funcionarios) {
-            if (funcionario.getCpf() == cpf) {
+            if (Objects.equals(funcionario.getCpf(), cpf)) {
                 funcionario.setNome(novoNome);
                 funcionario.setData_contratacao(nova_Data_Contratacao);
+                System.out.println("Atualização Concluida!");
+                encontrado = true;
                 break;
             }
+        }
+        if(!encontrado){
+            System.out.println("Atualização NÃO Conlcuida!!");
         }
     }
     public  void deletarFuncionario(String cpf) {
         for (Funcionario func : funcionarios) {
-            if (func.getCpf() == cpf) {
+            if (Objects.equals(func.getCpf(), cpf)) {
                 funcionarios.remove(func);
                 break;
             }
