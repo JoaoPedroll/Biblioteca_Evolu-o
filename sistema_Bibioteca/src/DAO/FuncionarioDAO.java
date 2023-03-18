@@ -30,7 +30,7 @@ public class FuncionarioDAO {
             }
         }
         if(!encontrado){
-            System.out.println("Atualização NÃO Conlcuida!!");
+            System.out.println("Atualização NÃO Conlcuida, Funcionario não existe!!");
         }
     }
     public  void deletarFuncionario(String cpf) {
@@ -43,12 +43,11 @@ public class FuncionarioDAO {
     }
 
 
-    public List<Funcionario> listarFuncionario() {
+    public void listarFuncionario() {
         for (Funcionario funcionario : funcionarios) {
             System.out.println("CPF: " + funcionario.getCpf() +
                     ", Nome: " + funcionario.getNome() +
                     ", Data de Contratação: " + funcionario.getData_contratacao());
         }
-        return funcionarios;
     }
 }

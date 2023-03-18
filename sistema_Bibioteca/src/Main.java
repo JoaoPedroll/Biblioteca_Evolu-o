@@ -6,6 +6,8 @@ import Model.Cliente;
 import Model.Emprestimo;
 import Model.Funcionario;
 import Model.Livro;
+
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static java.lang.Integer.parseInt;
@@ -13,84 +15,104 @@ import static java.lang.Integer.parseInt;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        int opcao = -1;
+        boolean run = true;
+        while(run) {
+            try {
+                Scanner input = new Scanner(System.in);
+                int opcao = -1;
 
-        while (opcao != 0) {
-            System.out.println("Selecione uma opção:");
-            System.out.println("1 - Gerenciar Funcionários");
-            System.out.println("2 - Gerenciar Clientes");
-            System.out.println("3 - Gerenciar Livros");
-            System.out.println("4 - Gerenciar Empréstimos");
-            System.out.println("0 - Sair");
-            System.out.print(">>: ");
+                while (opcao != 0) {
+                    System.out.print("""
+                                
+                            >>>SISTEMA DA BIBLIOTECA<<<
+                                                    
+                            Selecione uma opção:\s
+                            1 - Gerenciar Funcionários
+                            2 - Gerenciar Clientes
+                            3 - Gerenciar Livros
+                            4 - Gerenciar Empréstimos
+                            0 - Sair
+                            >>:\s""");
 
-            opcao = input.nextInt();
+                    opcao = input.nextInt();
 
-            switch (opcao) {
-                case 1 -> gerenciarFuncionarios();
-                case 2 -> gerenciarClientes();
-                case 3 -> gerenciarLivros();
-                case 4 -> gerenciarEmprestimos();
-                case 0 -> System.out.println("Encerrando o programa...");
-                default -> System.out.println("Opção inválida!");
+                    switch (opcao) {
+                        case 1 -> gerenciarFuncionarios();
+                        case 2 -> gerenciarClientes();
+                        case 3 -> gerenciarLivros();
+                        case 4 -> gerenciarEmprestimos();
+                        case 0 -> {
+                            System.out.println("Encerrando o programa...");
+                            run = false;
+                        }
+                        default -> System.out.println("Opção inválida!");
+                    }
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Entrada Incorreta!!");
             }
         }
     }
 
     public static void gerenciarFuncionarios() {
-        Scanner input = new Scanner(System.in);
-        int opcao = -1;
+        try {
+            Scanner input = new Scanner(System.in);
+            int opcao = -1;
 
-        FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
+            FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
 
-        while (opcao != 0) {
-            System.out.println("Gerenciamento de Funcionários");
-            System.out.println("Selecione uma opção:");
-            System.out.println("1 - Cadastrar Funcionário");
-            System.out.println("2 - Atualizar Funcionário");
-            System.out.println("3 - Deletar Funcionário");
-            System.out.println("4 - Listar Funcionários");
-            System.out.println("0 - Voltar");
-            System.out.print(">>: ");
+            while (opcao != 0) {
+                System.out.print("""
+    
+                        Gerenciamento de Funcionários
+                        Selecione uma opção:\s
+                        1 - Cadastrar Funcionário
+                        2 - Atualizar Funcionário
+                        3 - Deletar Funcionário
+                        4 - Listar Funcionários
+                        0 - Voltar
+                        >>:\s""");
 
-            opcao = input.nextInt();
+                opcao = input.nextInt();
 
-            Scanner input2 = new Scanner(System.in);
+                Scanner input2 = new Scanner(System.in);
 
-            switch (opcao) {
-                case 1 -> {
-                    System.out.println("Digite o CPF do funcionário:");
-                    String cpf = input2.next();
-                    System.out.println("Digite o nome do funcionário:");
-                    String nome = input2.next();
-                    System.out.println("Digite a data de contratação do funcionário:");
-                    String dataContratacao = input2.next();
-                    Funcionario funcionario = new Funcionario(nome, cpf, dataContratacao);
-                    funcionarioDAO.criarFuncionario(funcionario);
+                switch (opcao) {
+                    case 1 -> {
+                        System.out.println("Digite o CPF do funcionário:");
+                        String cpf = input2.next();
+                        System.out.println("Digite o nome do funcionário:");
+                        String nome = input2.next();
+                        System.out.println("Digite a data de contratação do funcionário:");
+                        String dataContratacao = input2.next();
+                        Funcionario funcionario = new Funcionario(nome, cpf, dataContratacao);
+                        funcionarioDAO.criarFuncionario(funcionario);
+                    }
+                    case 2 -> {
+                        System.out.println("Digite o CPF do funcionário a ser atualizado:");
+                        String cpf = input2.next();
+                        System.out.println("Digite o novo nome do funcionário:");
+                        String novoNome = input2.next();
+                        System.out.println("Digite a nova data de contratação do funcionário:");
+                        String dataContratacao = input2.next();
+                        funcionarioDAO.atualizarFuncionario(cpf, novoNome, dataContratacao);
+                        System.out.println("Atualização Concluida!!");
+                    }
+                    case 3 -> {
+                        System.out.println("Digite o CPF do funcionário a ser deletado:");
+                        String delcpf = input2.next();
+                        funcionarioDAO.deletarFuncionario(delcpf);
+                        System.out.println("Delete Concluido!!");
+                    }
+                    case 4 -> {
+                        funcionarioDAO.listarFuncionario();
+                    }
+                    case 0 -> System.out.println("Voltando ao menu principal...");
+                    default -> System.out.println("Opção inválida!");
                 }
-                case 2 -> {
-                    System.out.println("Digite o CPF do funcionário a ser atualizado:");
-                    String cpf = input2.next();
-                    System.out.println("Digite o novo nome do funcionário:");
-                    String novoNome = input2.next();
-                    System.out.println("Digite a nova data de contratação do funcionário:");
-                    String dataContratacao = input2.next();
-                    funcionarioDAO.atualizarFuncionario(cpf, novoNome, dataContratacao);
-                    System.out.println("Atualização Concluida!!");
-                }
-                case 3 -> {
-                    System.out.println("Digite o CPF do funcionário a ser deletado:");
-                    String delcpf = input2.next();
-                    funcionarioDAO.deletarFuncionario(delcpf);
-                    System.out.println("Delete Concluido!!");
-                }
-                case 4 -> {
-                    funcionarioDAO.listarFuncionario();
-                }
-                case 0 -> System.out.println("Voltando ao menu principal...");
-                default -> System.out.println("Opção inválida!");
             }
+        } catch (InputMismatchException e) {
+            System.out.println("Entrada Incorreta!!");
         }
     }
 
@@ -102,14 +124,17 @@ public class Main {
         ClienteDAO clienteDAO = new ClienteDAO();
 
         while (opcao != 0) {
-            System.out.println("Gerenciamento de Clientes");
-            System.out.println("Selecione uma opção:");
-            System.out.println("1 - Cadastrar Cliente");
-            System.out.println("2 - Atualizar Cliente");
-            System.out.println("3 - Deletar Cliente");
-            System.out.println("4 - Listar Clientes");
-            System.out.println("0 - Voltar");
-            System.out.print(">>: ");
+
+            System.out.print("""
+    
+                        Gerenciamento de Clientes
+                        Selecione uma opção:\s
+                        1 - Cadastrar Cliente
+                        2 - Atualizar Cliente
+                        3 - Deletar Cliente
+                        4 - Listar Cliente
+                        0 - Voltar
+                        >>:\s""");
 
             opcao = input.nextInt();
 
@@ -168,14 +193,16 @@ public class Main {
         LivroDAO livroDAO = new LivroDAO();
 
         while (opcao != 0) {
-            System.out.println("Gerenciamento de Livros");
-            System.out.println("Selecione uma opção:");
-            System.out.println("1 - Cadastrar Livro");
-            System.out.println("2 - Atualizar Livro");
-            System.out.println("3 - Deletar Livro");
-            System.out.println("4 - Listar Livros");
-            System.out.println("0 - Voltar");
-            System.out.print(">>: ");
+            System.out.print("""
+    
+                        Gerenciamento de Livros
+                        Selecione uma opção:\s
+                        1 - Cadastrar Livro
+                        2 - Atualizar Livro
+                        3 - Deletar Livro
+                        4 - Listar Livro
+                        0 - Voltar
+                        >>:\s""");
 
             opcao = input.nextInt();
 
@@ -183,30 +210,32 @@ public class Main {
 
             switch (opcao) {
                 case 1:
+                    System.out.println("Digite o ISBN do livro:");
+                    String isbn = input2.nextLine();
                     System.out.println("Digite o título do livro:");
                     String titulo = input2.nextLine();
                     System.out.println("Digite o nome do autor do livro:");
                     String autor = input2.nextLine();
                     System.out.println("Digite o número de páginas do livro:");
                     int numPaginas = input2.nextInt();
-                    Livro livro = new Livro(titulo, autor, numPaginas);
+                    Livro livro = new Livro(isbn, titulo, autor, numPaginas);
                     livroDAO.criarLivro(livro);
                     break;
                 case 2:
-                    System.out.println("Digite o título do livro a ser atualizado:");
-                    titulo = input2.nextLine();
+                    System.out.println("Digite o ISBN do livro a ser atualizado:");
+                    isbn = input2.nextLine();
                     System.out.println("Digite o novo título do livro:");
                     String novoTitulo = input2.nextLine();
                     System.out.println("Digite o novo autor do livro:");
                     String novoAutor = input2.nextLine();
                     System.out.println("Digite o novo número de páginas do livro:");
                     int novoNumPaginas = input2.nextInt();
-                    livroDAO.atualizarLivro(titulo, novoTitulo, novoAutor, novoNumPaginas);
+                    livroDAO.atualizarLivro(isbn, novoTitulo, novoAutor, novoNumPaginas);
                     break;
                 case 3:
-                    System.out.println("Digite o Titulo do livro a ser deletado:");
-                    titulo = input2.nextLine();
-                    livroDAO.deletarLivro(titulo);
+                    System.out.println("Digite o ISBN do livro a ser deletado:");
+                    isbn = input2.nextLine();
+                    livroDAO.deletarLivro(isbn);
                     break;
                 case 4:
                     livroDAO.listarLivros();
@@ -229,17 +258,19 @@ public class Main {
         Scanner input2 = new Scanner(System.in);
 
         while (opcao != 0) {
-            System.out.println("Gerenciamento de Empréstimos");
-            System.out.println("Selecione uma opção:");
-            System.out.println("1 - Cadastrar Empréstimo");
-            System.out.println("2 - Atualizar Empréstimo");
-            System.out.println("3 - Remover Empréstimo");
-            System.out.println("4 - Listar Empréstimos");
-            System.out.println("0 - Voltar");
-            System.out.print(">>: ");
+
+            System.out.print("""
+    
+                        Gerenciamento de Empréstimos
+                        Selecione uma opção:\s
+                        1 - Cadastrar Empréstimo
+                        2 - Atualizar Empréstimo
+                        3 - Deletar Empréstimo
+                        4 - Listar Empréstimo
+                        0 - Voltar
+                        >>:\s""");
 
             opcao = input.nextInt();
-
 
             switch (opcao) {
                 case 1:

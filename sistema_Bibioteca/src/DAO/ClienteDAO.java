@@ -8,9 +8,7 @@ import java.util.Objects;
 
 public class ClienteDAO {
 
-
     List<Cliente> clientes = new ArrayList<>();
-
 
     public void criarCliente(Cliente cliente) {
         clientes.add(cliente);
@@ -31,7 +29,7 @@ public class ClienteDAO {
             }
         }
         if(!encontrado){
-            System.out.println("Atualização NÃO Conlcuida!!");
+            System.out.println("Atualização NÃO Conlcuida, Cliente não existe!!");
         }
     }
     public void deletarCliente(String nome) {
@@ -44,13 +42,12 @@ public class ClienteDAO {
     }
 
 
-    public List<Cliente> listarClientes() {
+    public void listarClientes() {
         for (Cliente cli : clientes) {
             System.out.println("Cpf: " + cli.getCpf() +
                     ", Nome: " + cli.getNome() +
                     ", Idade: " + cli.getIdade() +
                     ", Rua: " + cli.getRua() + ", Cidade: " + cli.getCidade());
         }
-        return clientes;
     }
 }

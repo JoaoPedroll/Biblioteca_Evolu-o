@@ -32,7 +32,7 @@ public class EmprestimoDAO {
             }
         }
         if(!encontrado){
-            System.out.println("Atualização NÃO Conlcuida!!");
+            System.out.println("Atualização NÃO Conlcuida, Emprestimo não existe!!");
         }
     }
     public void deletarEmprestimo(String nomeLivro){
@@ -44,7 +44,7 @@ public class EmprestimoDAO {
         }
     }
 
-    public List<Emprestimo> listarEmprestimo(){
+    public void listarEmprestimo(){
         for (Emprestimo emprestimo : emprestimos){
             System.out.println("Emprestimo{ "+ "Livro: " +
                     emprestimo.getLivro() +"Cliente: "+
@@ -53,6 +53,5 @@ public class EmprestimoDAO {
                     + emprestimo.getData_emprestimo() +
                     ", Data de Devolução: " + emprestimo.getData_devolucao());
         }
-        return emprestimos;
     }
 }

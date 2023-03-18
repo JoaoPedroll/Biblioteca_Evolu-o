@@ -3,16 +3,21 @@ package Model;
 import java.util.ArrayList;
 
 public class Livro {
+
+    private String isbn;
     private String titulo;
     private String autor;
     private int numero_pagina;
 
-    public Livro(String titulo, String autor, int numero_pagina) {
+    public Livro(String isbn,String titulo, String autor, int numero_pagina) {
+        this.isbn = isbn;
         this.titulo = titulo;
         this.autor = autor;
         this.numero_pagina = numero_pagina;
     }
 
+    public String getIsbn() {return isbn;}
+    public void setIsbn(String isbn) {this.isbn = isbn;}
     public String getTitulo() {
         return titulo;
     }
@@ -40,16 +45,10 @@ public class Livro {
     @Override
     public String toString() {
         return "Livro{" +
-                "titulo='" + titulo + '\'' +
+                "isbn='" + isbn + '\'' +
+                ", titulo='" + titulo + '\'' +
                 ", autor='" + autor + '\'' +
                 ", numero_pagina=" + numero_pagina +
                 '}';
     }
-
 }
-
-
-
-
-
-

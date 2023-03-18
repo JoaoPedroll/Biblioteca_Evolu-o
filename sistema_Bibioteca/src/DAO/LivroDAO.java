@@ -19,10 +19,10 @@ public class LivroDAO {
         livros.add(livro);
     }
 
-    public void atualizarLivro(String titulo ,String novoTitulo, String novoAutor, int novoNum_Paginas) {
+    public void atualizarLivro(String isbn ,String novoTitulo, String novoAutor, int novoNum_Paginas) {
         boolean encontrado = false;
         for (Livro livro : livros) {
-            if (Objects.equals(livro.getTitulo(), titulo)) {
+            if (Objects.equals(livro.getIsbn(), isbn)) {
                 livro.setTitulo(novoTitulo);
                 livro.setAutor(novoAutor);
                 livro.setNumero_pagina(novoNum_Paginas);
@@ -32,23 +32,22 @@ public class LivroDAO {
             }
         }
         if(!encontrado){
-            System.out.println("Atualização NÃO Conlcuida!!");
+            System.out.println("Atualização NÃO Conlcuida, Livro não existe!!");
         }
     }
-    public void deletarLivro(String titulo) {
+    public void deletarLivro(String isbn) {
         for (Livro liv : livros) {
-            if (Objects.equals(liv.getTitulo(), titulo)) {
+            if (Objects.equals(liv.getIsbn(), isbn)) {
                 livros.remove(liv);
                 break;
             }
         }
     }
 
-    public List <Livro> listarLivros() {
+    public void listarLivros() {
         for (Livro livro : livros) {
-            System.out.println("Título: " + livro.getTitulo() + ", Autor: " +
+            System.out.println("ISBN: " + livro.getIsbn() + ", Título: " + livro.getTitulo() + ", Autor: " +
                     livro.getAutor() + ", Número de Páginas: " + livro.getNumero_pagina());
         }
-        return livros;
     }
 }
