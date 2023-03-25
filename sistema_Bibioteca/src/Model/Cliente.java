@@ -1,28 +1,21 @@
 package Model;
 import java.util.ArrayList;
 
-public class Cliente {
-    private String nome;
-    private static String cpf;
+public class Cliente extends Pessoa{
+
     private int idade;
     private String rua;
     private String cidade;
 
     public Cliente(String nome,String cpf, int idade, String rua, String cidade) {
-        this.nome = nome;
-        this.cpf = cpf;
+        this.setNome(nome);
+        this.setCpf(cpf);
         this.idade = idade;
         this.rua = rua;
         this.cidade = cidade;
     }
 
-    public String getNome() {
-        return nome;
-    }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 
     public int getIdade() {
         return idade;
@@ -48,19 +41,13 @@ public class Cliente {
         this.cidade = cidade;
     }
 
-    public String getCpf() {
-        return cpf;
-    }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
 
     @Override
     public String toString() {
         return "Cliente{" +
-                "nome='" + nome + '\'' +
-                ", cpf='" + cpf + '\'' +
+                "nome='" + super.getNome() + '\'' +
+                ", cpf='" + super.getCpf() + '\'' +
                 ", idade=" + idade +
                 ", rua='" + rua + '\'' +
                 ", cidade='" + cidade + '\'' +

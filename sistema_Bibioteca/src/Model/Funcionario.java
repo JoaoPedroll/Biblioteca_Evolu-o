@@ -2,32 +2,15 @@ package Model;
 
 import java.util.ArrayList;
 
-public class Funcionario {
-    private String nome;
-    private String cpf;
+public class Funcionario extends Pessoa{
     private String data_contratacao;
 
     public Funcionario(String nome, String cpf, String data_contratacao) {
-        this.nome = nome;
-        this.cpf = cpf;
+        this.setNome(nome);
+        this.setCpf(cpf);
         this.data_contratacao = data_contratacao;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
 
     public String getData_contratacao() {
         return data_contratacao;
@@ -40,8 +23,8 @@ public class Funcionario {
     @Override
     public String toString() {
         return "Funcionario{" +
-                "nome='" + nome + '\'' +
-                ", cpf='" + cpf + '\'' +
+                "nome='" + super.getNome() + '\'' +
+                ", cpf='" + super.getCpf() + '\'' +
                 ", data_contratacao='" + data_contratacao + '\'' +
                 '}';
     }
